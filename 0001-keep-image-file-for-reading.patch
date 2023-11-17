@@ -1,0 +1,34 @@
+From c9f7c0a264c58f30234aa5dcc1591e6380d802b2 Mon Sep 17 00:00:00 2001
+From: "robe.zhang" <robe.zhang@outlook.com>
+Date: Fri, 17 Nov 2023 21:18:53 +0800
+Subject: [PATCH] keep image file for reading
+
+Signed-off-by: robe.zhang <robe.zhang@outlook.com>
+---
+ build/rockchip/build.sh | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/build/rockchip/build.sh b/build/rockchip/build.sh
+index 2372851..64abc9e 100755
+--- a/build/rockchip/build.sh
++++ b/build/rockchip/build.sh
+@@ -202,6 +202,7 @@ if [ "$BUILD_OTA" != true ] ; then
+ fi
+ 
+ if [ "$BUILD_UPDATE_IMG" = true ] ; then
++	rm $PACK_TOOL_DIR/rockdev/Image -rf
+     mkdir -p $PACK_TOOL_DIR/rockdev/Image/
+     cp -f $IMAGE_PATH/* $PACK_TOOL_DIR/rockdev/Image/
+ 
+@@ -226,7 +227,7 @@ if [ "$BUILD_UPDATE_IMG" = true ] ; then
+     fi
+     cd -
+     mv $PACK_TOOL_DIR/rockdev/update.img $IMAGE_PATH/ -f
+-    rm $PACK_TOOL_DIR/rockdev/Image -rf
++    # rm $PACK_TOOL_DIR/rockdev/Image -rf
+ fi
+ 
+ if [ "$BUILD_PACKING" = true ] ; then
+-- 
+2.34.1
+
